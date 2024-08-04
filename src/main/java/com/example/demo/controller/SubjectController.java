@@ -10,20 +10,20 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("api/subjects")
+@RequestMapping("/api/subjects")
 public class SubjectController {
 
     @Autowired
     private SubjectService subjectService;
 
-    @GetMapping()
-    public List<Subject> getSubjects() {
+    @GetMapping
+    public List<Subject> getAllSubjects() {
         return subjectService.getAllSubjects();
     }
 
     @PostMapping
-    public ResponseEntity<Subject> addSubject(@RequestBody Subject subject){
-        Subject subject1 = subjectService.saveSubject(subject);
-        return new ResponseEntity<>(subject1, HttpStatus.CREATED);
+    public ResponseEntity<Subject> addSubject(@RequestBody Subject subject) {
+        Subject savedSubject = subjectService.saveSubject(subject);
+        return new ResponseEntity<>(savedSubject, HttpStatus.CREATED);
     }
 }
